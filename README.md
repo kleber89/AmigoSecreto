@@ -15,15 +15,18 @@ El código sigue la siguiente estructura:
 
 ## 💻 Ejemplo de Código
 // 🎭 Lista de amigos
+
 const amigos = ["Carlos", "Ana", "Luis", "María", "Pedro", "Sofía"];
 
 // 🔀 Función para seleccionar un amigo secreto
+
 function seleccionarAmigoSecreto(lista) {
     const indiceAleatorio = Math.floor(Math.random() * lista.length);
     return lista[indiceAleatorio];
 }
 
 // 🎉 Mostrar el resultado
+
 console.log("🎁 Tu amigo secreto es: " + seleccionarAmigoSecreto(amigos));
 
 ## 🤝 Contribución
