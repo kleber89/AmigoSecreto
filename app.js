@@ -1,23 +1,51 @@
-let amigos = []; // Array para almacenar los nombres de tus amigos
+class Amigos {
+  constructor() {
+      this.amigos = [];
+  }
 
-function agregarAmigo(nombre) {
-    if (nombre) {
-        amigos.push(nombre); // Agrega el nombre al array de amigos
-    } else {
-        console.log("El nombre no puede estar vacío"); // Mensaje de error si el nombre es inválido
-    }
+  agregarAmigo(nombre) {
+      if (!nombre.trim()) {
+          console.log("El nombre no puede estar vacío.");
+          return;
+      }
+      if (this.amigos.includes(nombre)) {
+          console.log("Este amigo ya está en la lista.");
+          return;
+      }
+      this.amigos.push(nombre);
+      console.log(`Amigo agregado: ${nombre}`);
+  }
+
+  actualizarAmigo(indice, nuevoNombre) {
+      if (indice < 0 || indice >= this.amigos.length) {
+          console.log("Índice fuera de rango.");
+          return;
+      }
+      if (!nuevoNombre.trim()) {
+          console.log("El nuevo nombre no puede estar vacío.");
+          return;
+      }
+      this.amigos[indice] = nuevoNombre;
+      console.log(`Amigo actualizado en la posición ${indice}: ${nuevoNombre}`);
+  }
+
+  sortearAmigos() {
+      return [...this.amigos].sort(() => Math.random() - 0.5);
+  }
+
+  listarAmigos() {
+      if (this.amigos.length === 0) {
+          console.log("No hay amigos en la lista.");
+          return;
+      }
+      console.log("Lista de amigos:", this.amigos.join(", "));
+  }
 }
 
-// Nueva función para actualizar un amigo en la lista
-function actualizarAmigo(indice, nuevoNombre) {
-    if (indice >= 0 && indice < amigos.length) {
-        amigos[indice] = nuevoNombre; // Actualiza el nombre en el array
-    } else {
-        console.log("Índice fuera de rango"); // Mensaje de error si el índice es inválido
-    }
-}
-
-// Nueva función para sortear amigos
-function sortearAmigos() {
-    return [...amigos].sort(() => Math.random() - 0.5); // Devuelve un nuevo array con los amigos en orden aleatorio
-}
+// Ejemplo de uso:
+const listaAmigos = new Amigos();
+listaAmigos.agregarAmigo("Carlos");
+listaAmigos.agregarAmigo("Ana");
+listaAmigos.listarAmigos();
+listaAmigos.actualizarAmigo(1, "María");
+console.log("Sorteo:", listaAmigos.sortearAmigos());
